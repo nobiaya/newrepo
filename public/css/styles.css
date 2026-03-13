@@ -1,6 +1,206 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/******* Background Page *********************/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', Arial, Helvetica, sans-serif;
+
+  background-image:
+  linear-gradient(45deg, #020617 25%, transparent 25%),
+  linear-gradient(-45deg, #020617 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, #020617 75%),
+  linear-gradient(-45deg, transparent 75%, #020617 75%);
+  background-size:40px 40px;
+  background-position:0 0, 0 20px, 20px -20px, -20px 0px;
+}
+
+
+/* ===== Page Container ===== */
+
+#wrapper{
+  max-width:900px;
+  margin:20px auto;
+  background:#020617;
+  border:5px solid #00aeff;
+  border-radius:10px;
+  padding:20px;
+  color:#e2e8f0;
+}
+
+
+/* ===== Header ===== */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.siteName a{
+  font-family:'Orbitron', sans-serif;
+  font-size:32px;
+  font-weight:bold;
+  color:#00aeff;
+  text-decoration:none;
+}
+
+#tools a{
+  text-decoration:none;
+  color:#e2e8f0;
+}
+
+
+/* ===== Navigation ===== */
+
+nav{
+  background:#020617;
+  margin-bottom:20px;
+  border-top:2px solid #e2e8f0;
+  border-bottom:2px solid #e2e8f0;
+}
+
+nav ul{
+  display:flex;
+  justify-content:space-around;
+  list-style:none;
+  margin:0;
+  padding:12px;
+}
+
+nav a{
+  color:#e2e8f0;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+nav a:hover{
+  color:#00aeff;
+}
+
+
+/* ===== Hero Section ===== */
+
+.hero{
+  position:relative;
+}
+
+.hero img{
+  width:100%;
+  max-width:500px;
+}
+
+.hero-text{
+  position:absolute;
+  top:40px;
+  left:30px;
+  color:#00aeff;
+}
+
+.hero-text ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.own-btn{
+  display:inline-block;
+  background:#00aeff;
+  color:#020617;
+  padding:10px 18px;
+  margin-top:10px;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:4px;
+}
+
+.own-btn:hover{
+  background:#00aeff;
+}
+
+
+/* ===== Reviews ===== */
+
+.reviews{
+  margin-top:30px;
+}
+
+.reviews ul{
+  padding-left:20px;
+}
+
+.reviews li{
+  margin-bottom:8px;
+}
+
+
+/* ===== Upgrades ===== */
+
+.upgrades{
+  margin-top:30px;
+}
+
+.upgrade-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.upgrade{
+  background:#00aeff;
+  padding:15px;
+  text-align:center;
+  border:2px solid #00aeff;
+  border-radius:6px;
+}
+
+.upgrade img{
+  width:80px;
+}
+
+.upgrade a{
+  display:block;
+  margin-top:5px;
+  color:#020617;
+  font-weight:bold;
+}
+
+
+/* ===== Footer ===== */
+
+footer{
+  margin-top:30px;
+  font-size:14px;
+  color:#8b99ac;
+}
+
+
+/* ===== Desktop Layout ===== */
+
+@media screen and (min-width:768px){
+
+  .hero{
+    display:flex;
+    align-items:center;
+  }
+
+  .hero img{
+    margin-left:auto;
+  }
+
+  .bottom-layout{
+    display:flex;
+    gap:40px;
+  }
+
+  .reviews{
+    width:50%;
+    order:2;
+  }
+
+  .upgrades{
+    width:50%;
+    order:1;
+  }
+
 }
