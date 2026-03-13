@@ -95,6 +95,7 @@ nav a:hover{
   top:40px;
   left:30px;
   color:#00aeff;
+  
 }
 
 .hero-text ul{
@@ -204,3 +205,10 @@ footer{
   }
 
 }
+.hero-text{
+  background-color: rgba(2, 6, 23, 0.8);
+ padding: 16px;
+ border-radius: 4px;
+ color: white;
+}
+
