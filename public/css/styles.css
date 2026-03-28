@@ -212,3 +212,41 @@ footer{
  color: white;
 }
 
+
+/* ===== Vehicle Detail Page ===== */
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: #020617;
+  border: 2px solid #00aeff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.vehicle-detail img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.vehicle-info h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #00aeff;
+}
+
+.vehicle-info p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 768px) {
+  .vehicle-detail {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}

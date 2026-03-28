@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 // Static Routes
-//index route
-router.get("/", function (req, res){
-  res.render("index", {title: "Home"})
-})
 
 // Set up "public" folder / subfolders for static files
 router.use(express.static("public"));

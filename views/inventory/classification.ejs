@@ -1,0 +1,18 @@
+<!-- Content Heading -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <% res.redirect('/') %>
+<% } %>
+
+<!-- Message Section -->
+<% if (grid && grid.length > 0) { %>
+  <p>Check out our available vehicles below:</p>
+<% } else { %>
+  <p class="notice">Sorry, no matching vehicles could be found.</p>
+<% } %>
+
+<!-- Inventory Items Display -->
+<div class="inventory-grid">
+  <%- grid %>
+</div>
