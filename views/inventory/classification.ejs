@@ -1,18 +1,10 @@
-<!-- Content Heading -->
+<%# Unit 3, Build Classification View activity %>
 <% if (title) { %>
-  <h1><%= title %></h1>
-<% } else { %>
-  <% res.redirect('/') %>
-<% } %>
+<h1><%= title %> </h1>
+<% } else {
+  res.redirect('/')
+} %>
 
-<!-- Message Section -->
-<% if (grid && grid.length > 0) { %>
-  <p>Check out our available vehicles below:</p>
-<% } else { %>
-  <p class="notice">Sorry, no matching vehicles could be found.</p>
-<% } %>
+<%# messages() %>
 
-<!-- Inventory Items Display -->
-<div class="inventory-grid">
-  <%- grid %>
-</div>
+<%- grid %>

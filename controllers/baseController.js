@@ -1,25 +1,16 @@
-const utilities = require("../utilities/")
-
+const utilities = require("../utilities")
 const baseController = {}
 
-/* ***************************
- * Build Home View
- * ************************** */
-baseController.buildHome = async function (req, res) {
-  try {
-    // Get navigation
-    let nav = await utilities.getNav()
+baseController.buildHome = async function(req, res){
+  const nav = await utilities.getNav()
+  res.render("index", {title: "Home", nav})
+}
 
-    // Render home page
-    res.render("index", {
-      title: "Home",
-      nav,
-    })
-  } catch (error) {
-    console.error("buildHome error:", error)
-    res.status(500).send("Server Error")
-  }
+/* *********************************
+ * Task 3 Trigger a 500 Server Error
+ * ****************************** */
+baseController.triggerError = async function (req, res, next) {
+  throw new Error("500 Server Error")  
 }
 
 module.exports = baseController
-
