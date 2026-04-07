@@ -3,47 +3,175 @@ const utilities = require("../utilities/")
 
 const invCont = {}
 
-/* ***************************
- *  Build inventory by classification view
- * ************************** */
+/* ******************
+ * Build inventory by classification view
+ * ****************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
-    nav,
-    grid,
-  })
+    const classification_id = req.params.classificationId
+    const data = await invModel.getInventoryByClassificationId(classification_id)
+    
+    let grid
+    let title
+    if (data.length > 0) {
+        grid = await utilities.buildClassificationGrid(data)
+        title = data[0].classification_name + " vehicles"
+    } else {
+        grid = "<p class='notice'>Sorry, no vehicles of this classification are currently available.</p>"
+        title = "No vehicles found"
+    }
+
+    let nav = await utilities.getNav()
+
+    res.render("./inventory/classification", {
+        title,
+        nav,
+        grid
+    })
 }
 
-/* ***************************
- *  Build vehicle detail view
- *  Assignment 3, Task 1
- * ************************** */
-invCont.buildDetail = async function (req, res, next) {
-  const invId = req.params.id
-  let vehicle = await invModel.getInventoryById(invId)
-  const htmlData = await utilities.buildSingleVehicleDisplay(vehicle)
-  let nav = await utilities.getNav()
-  const vehicleTitle =
-    vehicle.inv_year + " " + vehicle.inv_make + " " + vehicle.inv_model
-  res.render("./inventory/detail", {
-    title: vehicleTitle,
-    nav,
-    message: null,
-    htmlData,
-  })
+/* ******************
+ * Build vehicle by inventory id view
+ * ****************** */
+invCont.buildByInventoryId = async function (req, res, next) {
+    const inventory_id = req.params.inventoryId
+    const data = await invModel.getVehicleDetailsByInventoryId(inventory_id)
+    const grid = await utilities.buildVehicleDetailsGrid(data)
+    let nav = await utilities.getNav()
+    const year = data[0].inv_year
+    const make = data[0].inv_make
+    const model = data[0].inv_model
+
+    res.render("./inventory/vehicle", {
+        title: year + ' ' + make + ' ' + model,
+        nav,
+        grid,
+    })
 }
 
-/* ****************************************
- *  Process intentional error
- *  Assignment 3, Task 3
- * ************************************ */
-invCont.throwError = async function (req, res) {
-  throw new Error("I am an intentional error")
+/* ******************
+ * Build vehicle management view
+ * ****************** */
+invCont.buildVehicleManagement = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("./inventory/management", {
+        title: "Vehicle Management",
+        nav,
+    })
+}
+
+/* ******************
+ * Build add new classification view
+ * ****************** */
+invCont.buildAddClassification = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("./inventory/add-classification", {
+        title: "Add Classification",
+        nav,
+        errors: null
+    })
+}
+
+/* ********************************
+ * Process New Classification Addition
+ * ****************************** */
+invCont.addNewClassification = async function (req, res) {
+    const { classification_name } = req.body
+
+    const addResult = await invModel.addNewClassification(
+        classification_name
+    )
+
+    let nav = await utilities.getNav()
+
+    if (addResult) {
+        req.flash(
+            "notice",
+            `The ${classification_name} classification was successfully added.`
+        )
+        res.status(201).render("./inventory/management", {
+            title: "Vehicle Management",
+            nav,
+            errors: null,
+        })
+    } else {
+        req.flash("notice", "Sorry, the classification addition failed.")
+        res.status(501).render("inventory/add-classification", {
+            title: "Add Classification",
+            nav,
+            errors: null,
+        })
+    }
+}
+
+/* ********************************
+ * Build add new inventory view
+ * ****************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    let classificationList = await utilities.buildClassificationList()
+    res.render("./inventory/add-inventory", {
+        title: "Add Vehicle",
+        nav,
+        errors: null,
+        classificationList
+    })
+}
+
+/* ********************************
+ * Process New Inventory Addition
+ * ****************************** */
+invCont.addNewInventory = async function (req, res) {
+    const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
+
+    const addResult = await invModel.addNewInventory(
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color
+    )
+
+    let nav = await utilities.getNav()
+    let classificationList = await utilities.buildClassificationList()
+
+    if (addResult) {
+        req.flash(
+            "notice",
+            `The ${inv_make} ${inv_model} vehicle was successfully added.`
+        )
+        res.status(201).render("./inventory/management", {
+            title: "Vehicle Management",
+            nav,
+            errors: null,
+        })
+    } else {
+        req.flash("notice", "Sorry, the vehicle addition failed.")
+        res.status(501).render("inventory/add-inventory", {
+            title: "Add Vehicle",
+            nav,
+            errors: null,
+            classification_id,
+            inv_make,
+            inv_model,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_year,
+            inv_miles,
+            inv_color,
+            classificationList
+        })
+    }
+}
+
+invCont.triggerError = function(req, res, next) {
+    next(new Error("Test 500 error"))
 }
 
 module.exports = invCont

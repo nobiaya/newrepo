@@ -1,252 +1,320 @@
-/******* Background Page *********************/
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-family: "'Rajdhani', Arial, Helvetica, sans-serif;";
+}
+
+:root {
+  --dark-background-or-text: #070707;
+  --light-grey-contrast: #eeeeee;
+  --light-blue-accent: #31c1ff;
+  --dark-blue-form: #39475a;
+}
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Rajdhani', Arial, Helvetica, sans-serif;
-
-  background-image:
-  linear-gradient(45deg, #020617 25%, transparent 25%),
-  linear-gradient(-45deg, #020617 25%, transparent 25%),
-  linear-gradient(45deg, transparent 75%, #020617 75%),
-  linear-gradient(-45deg, transparent 75%, #020617 75%);
-  background-size:40px 40px;
-  background-position:0 0, 0 20px, 20px -20px, -20px 0px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-
-/* ===== Page Container ===== */
-
-#wrapper{
-  max-width:900px;
-  margin:20px auto;
-  background:#020617;
-  border:5px solid #00aeff;
-  border-radius:10px;
-  padding:20px;
-  color:#e2e8f0;
+main {
+  margin: 0 5px;
 }
 
-
-/* ===== Header ===== */
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
+footer {
+  margin: 0 5px;
 }
 
-.siteName a{
-  font-family:'Orbitron', sans-serif;
-  font-size:32px;
-  font-weight:bold;
-  color:#00aeff;
-  text-decoration:none;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "'Rajdhani', Arial, Helvetica, sans-serif;";
 }
 
-#tools a{
-  text-decoration:none;
-  color:#e2e8f0;
-}
-
-
-/* ===== Navigation ===== */
-
-nav{
-  background:#020617;
-  margin-bottom:20px;
-  border-top:2px solid #e2e8f0;
-  border-bottom:2px solid #e2e8f0;
-}
-
-nav ul{
-  display:flex;
-  justify-content:space-around;
-  list-style:none;
-  margin:0;
-  padding:12px;
-}
-
-nav a{
-  color:#e2e8f0;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-nav a:hover{
-  color:#00aeff;
-}
-
-
-/* ===== Hero Section ===== */
-
-.hero{
-  position:relative;
-}
-
-.hero img{
-  width:100%;
-  max-width:500px;
-}
-
-.hero-text{
-  position:absolute;
-  top:40px;
-  left:30px;
-  color:#00aeff;
-  
-}
-
-.hero-text ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-
-.own-btn{
-  display:inline-block;
-  background:#00aeff;
-  color:#020617;
-  padding:10px 18px;
-  margin-top:10px;
-  text-decoration:none;
-  font-weight:bold;
-  border-radius:4px;
-}
-
-.own-btn:hover{
-  background:#00aeff;
-}
-
-
-/* ===== Reviews ===== */
-
-.reviews{
-  margin-top:30px;
-}
-
-.reviews ul{
-  padding-left:20px;
-}
-
-.reviews li{
-  margin-bottom:8px;
-}
-
-
-/* ===== Upgrades ===== */
-
-.upgrades{
-  margin-top:30px;
-}
-
-.upgrade-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.upgrade{
-  background:#00aeff;
-  padding:15px;
-  text-align:center;
-  border:2px solid #00aeff;
-  border-radius:6px;
-}
-
-.upgrade img{
-  width:80px;
-}
-
-.upgrade a{
-  display:block;
-  margin-top:5px;
-  color:#020617;
-  font-weight:bold;
-}
-
-
-/* ===== Footer ===== */
-
-footer{
-  margin-top:30px;
-  font-size:14px;
-  color:#8b99ac;
-}
-
-
-/* ===== Desktop Layout ===== */
-
-@media screen and (min-width:768px){
-
-  .hero{
-    display:flex;
-    align-items:center;
-  }
-
-  .hero img{
-    margin-left:auto;
-  }
-
-  .bottom-layout{
-    display:flex;
-    gap:40px;
-  }
-
-  .reviews{
-    width:50%;
-    order:2;
-  }
-
-  .upgrades{
-    width:50%;
-    order:1;
-  }
-
-}
-.hero-text{
-  background-color: rgba(2, 6, 23, 0.8);
- padding: 16px;
- border-radius: 4px;
- color: white;
-}
-
-
-/* ===== Vehicle Detail Page ===== */
-
-.vehicle-detail {
+#top-header {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  background: #020617;
-  border: 2px solid #00aeff;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
+  grid-template-columns: 7fr 2fr;
+  margin: 1rem 5px;
 }
 
-.vehicle-detail img {
+.siteName>a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--dark-background-or-text);
+}
+
+.siteName>a:visited {
+  text-decoration: none;
+  color: var(--dark-background-or-text);
+}
+
+#tools {
+  text-align: right;
+}
+
+#tools>a {
+  text-decoration: none;
+  font-size: 0.75rem;
+  color: var(--dark-background-or-text);
+}
+
+.nav-bar {
+  background-color: var(--dark-background-or-text);
+}
+
+.nav-bar ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.nav-bar li {
+  list-style: none;
+  line-height: 44px;
+  cursor: pointer;
+}
+
+.nav-bar>ul>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+.notice{
+  color: darked;
+  font-style: italic;
+}
+
+.hero {
+  background-image: url("../images/vehicles/delorean.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 90%;
+  aspect-ratio: 100 / 51;
+  margin: 0 auto;
+  position: relative;
+}
+
+.cta-float {
+  background-color: rgba(0, 0, 0, 0.1);
+  max-width: 180px;
+  padding: 5px;
+  color: var(--light-blue-accent);
+  position: absolute;
+  left: -15px;
+  top: -10px;
+}
+
+.cta-float>h2, .cta-float>ul, .cta-float>button {
+  margin: 0;
+}
+
+
+.cta-float>ul {
+  list-style: none;
+  padding: 0;
+}
+
+.hero-button {
+  background-color: var(--light-blue-accent);
+  height: 44px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px;
+}
+
+.section-grid>div>h1 {
+  margin-bottom: 0;
+}
+
+.section-grid>div>ul {
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+}
+
+.section-grid>div>ul>li {
+  padding: 0.5rem 0;
+}
+
+.upgrade-grid {
+  width: 95%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  margin: 10px;
+}
+
+.upgrade {
+  text-align: center;
+}
+
+.blue-rectangle {
   width: 100%;
-  height: auto;
-  border-radius: 6px;
+  aspect-ratio: 20 / 9;
+  background-color: var(--light-blue-accent);
+  border: 1px solid var(--dark-background-or-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.vehicle-info h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  color: #00aeff;
+#inv-display {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
-.vehicle-info p {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  line-height: 1.4;
+#inv-display>li {
+  border: 1px solid var(--dark-background-or-text);
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 10fr 8fr;
+  max-width: 190px;
 }
 
-@media screen and (min-width: 768px) {
-  .vehicle-detail {
+#inv-display>li>a {
+  max-width: 190px;
+}
+
+#inv-display>li>a>img {
+  max-width: 100%;
+}
+
+#inv-display hr {
+  border: none;
+  height: 3px;
+  background-color: var(--dark-background-or-text);
+}
+
+.namePrice {
+  text-align: center;
+}
+
+.namePrice>h2 {
+    font-size: 1.25em;
+}
+
+.vehicle-image>img {
+    max-width: 100%;
+}
+
+.vehicle-info>p {
+    padding: 0.9rem;
+    margin: 5px;
+}
+
+.vehicle-info>p>span {
+  font-weight: bold;
+}
+
+.vehicle-info>p:nth-child(even) {
+  background-color: var(--light-grey-contrast);
+}
+
+.copyright {
+  margin: 1rem 1rem 0 0;
+}
+
+.error-link {
+  padding: 0;
+  margin: 0;
+}
+
+input, textarea, select {
+  display: block;
+  margin: 2px 0 10px 0;
+  width: 90%;
+  padding: 5px;
+}
+
+.form-div {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#login-form, #registration-form, #add-classification-form {
+  background-color: var(--dark-blue-form);
+  color: white;
+  padding: 1rem;
+  min-width: 250px;
+}
+
+#login-form>fieldset, #registration-form>fieldset, #add-classification-form>fieldset {
+  border: 1px solid white;
+}
+
+#login-form>p {
+  text-align: center;
+}
+
+#login-form>p>a {
+  color: white;
+}
+
+#login-button {
+  width: 90%;
+  height: 40px;
+  margin: 10px 0;
+}
+
+.italic-required-statement {
+  font-style: italic;
+}
+
+@media screen and (min-width: 600px) {
+  html {
+    background-image: url("../images/site/small_check.jpg");
+    background-size: auto;
+    background-repeat: repeat;
+  }
+  
+  body {
+    max-width: 700px;
+    background-color: white;
+    border: 3px solid var(--light-blue-accent);
+    border-radius: 10px;
+    margin: 1rem auto;
+  }
+
+  .nav-bar {
+    margin: 0 auto;
+    width: 97%;
+  }
+
+  .section-grid {
+    margin: 1.5rem 0;
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    gap: 10px;
+    clear: both;
+  }
+
+  .section-grid>div>h1 {
+    margin: 2rem 0;
+  }
+
+  .section-grid>div:nth-child(1) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .section-grid>div:nth-child(2) {
+    grid-column: 1 / 2;
+  }
+
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+}
+
+  #login-form, #registration-form, #add-classification-form {
+    width: 50%;
+    max-width: 350px;
   }
 }

@@ -3,27 +3,20 @@
  * application. It is used to control the project.
  *******************************************/
 
-/* ***********************
- * Require Statements
+/* Require Statements
  *************************/
-const express = require("express")
-const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
-const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require('./utilities/index')
-const session = require("express-session")
-const pool = require('./database/')
-
-
-/* ***********************
- * View Engine And Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+const express = require("express");
+const session = require("express-session");
+const pool = require('./database/');
+const env = require("dotenv").config();
+const app = express();
+const expressLayouts = require("express-ejs-layouts");
+const static = require("./routes/static");
+const baseController = require("./controllers/baseController");
+const inventoryRoute = require("./routes/inventoryRoute");
+const accountRoute = require("./routes/accountRoute");
+const utilities = require("./utilities/");
+const bodyParser = require("body-parser");
 
 
 /* ***********************
@@ -48,15 +41,31 @@ app.use(function(req, res, next){
 })
 
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+/* ***********************
+ * View Engine And Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
+
+
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+//app.use(express.static('public'));
+ app.use(static);
+
 //Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 
 
