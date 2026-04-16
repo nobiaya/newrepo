@@ -246,6 +246,18 @@ SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interi
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
 UPDATE inventory
-SET 
-  inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
   inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+-- W06 Assignment: Final Enhancement
+--  Additional DDL command to add new table
+--  'Favorite' table is a relational table,
+--  linking many accounts to many vehicles in inventory
+CREATE TABLE IF NOT EXISTS public.favorite (
+    account_id INTEGER NOT NULL,
+    inv_id INTEGER NOT NULL,
+    added_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_favorite_account FOREIGN KEY (account_id) REFERENCES public.account(account_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_favorite_inventory FOREIGN KEY (inv_id) REFERENCES public.inventory(inv_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT favorite_pkey PRIMARY KEY (account_id, inv_id)
+);

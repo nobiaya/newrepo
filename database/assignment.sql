@@ -29,6 +29,7 @@ INNER JOIN classification c
 ON i.classification_id = c.classification_id
 WHERE c.classification_name = 'Sport';
 
+--Task 6
 UPDATE inventory
 SET 
   inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
