@@ -288,7 +288,6 @@ async function addFavorite(req, res) {
     const account_id = res.locals.accountData.account_id
 
     const addFavoriteResult = await actModel.addFavorite(account_id, inv_id)
-
     if (addFavoriteResult) {
         req.flash("notice", "Vehicle added to favorites.")
     } else {
